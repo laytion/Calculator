@@ -5,22 +5,39 @@ const divideBtn = document.querySelector('#divide');
 const numbersContainer = document.querySelector('#numbersContainer');
 
 function makeNumberBoard() {
+
+    //top bar
+    addButton('/', 'division');
+    addButton('%', 'percentage');
+    addButton('+/-', 'negativeSign');
+    addButton('AC', 'clear');
+
     for (let i = 9; i >= 0; i--) {
+        if (i == 9) {
+            addButton('*', 'multiplication');
+        }
+        else if (i == 6) {
+            addButton('-', 'subtraction');
+        }
+        else if (i == 3) {
+            addButton('+', 'addition');
+        }
+        else if (i == 0) {
+            addButton('=', 'equals');
+            addButton('.', 'decimal');
+        }
         let number = document.createElement('div');
         number.textContent = `${i}`;
-        number.classList.add('number');
+        number.classList.add(`number`);
         numbersContainer.appendChild(number);
     }
+}
 
-    let dot = document.createElement('div');
-    dot.textContent = '.';
-    dot.classList.add('number');
-    numbersContainer.appendChild(dot);
-    let equals = document.createElement('div');
-    equals.textContent = '=';
-    equals.classList.add('number', 'equals');
-    numbersContainer.appendChild(equals);
-
+function addButton(name, cssClass) {
+    let button = document.createElement('div');
+    button.textContent = name;
+    button.classList.add('number', cssClass);
+    numbersContainer.appendChild(button);
 }
 
 
