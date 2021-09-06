@@ -1,8 +1,8 @@
-const addBtn = document.querySelector('#add');
-const subtractBtn = document.querySelector('#subtract');
-const multiplyBtn = document.querySelector('#multiply');
-const divideBtn = document.querySelector('#divide');
+// const subtractBtn = document.querySelector('#subtract');
+// const multiplyBtn = document.querySelector('#multiply');
+// const divideBtn = document.querySelector('#divide');
 const numbersContainer = document.querySelector('#numbersContainer');
+const screen = document.querySelector('#numberScreen');
 
 function makeNumberBoard() {
 
@@ -29,6 +29,9 @@ function makeNumberBoard() {
         let number = document.createElement('div');
         number.textContent = `${i}`;
         number.classList.add(`number`);
+        if (i == 0) {
+            number.classList.add(`zero`)
+        }
         numbersContainer.appendChild(number);
     }
 }
@@ -36,40 +39,114 @@ function makeNumberBoard() {
 function addButton(name, cssClass) {
     let button = document.createElement('div');
     button.textContent = name;
-    button.classList.add('number', cssClass);
+    button.classList.add('block', cssClass);
     numbersContainer.appendChild(button);
 }
 
 
 function add(a, b) {
-    return a + b;
+    return parseInt(a) + parseInt(b);
 }
 
 function subtract(a, b) {
-    return a - b;
+    return parseInt(a) - parseInt(b);
 }
 
 function multiply(a, b) {
-    return a * b;
+    return parseInt(a) * parseInt(b);
 }
 
 function divide(a, b) {
-    return a / b;
+    return parseInt(a) / parseInt(b);
 }
 
 function operate(operator, a, b) {
     if (operator == 'add') {
-        add(a, b);
+        return add(a, b);
     }
     else if (operator == 'subtract') {
-        subtract(a, b);
+        return subtract(a, b);
     }
     else if (operator == 'multiply') {
-        multiply(a, b);
+        return multiply(a, b);
     }
     else if (operator == 'divide') {
-        divide(a, b);
+        return divide(a, b);
     }
 }
 
+function populateScreen() {
+    document.querySelectorAll('.number').forEach(number => {
+        number.addEventListener('click', () => {
+            screen.textContent += number.textContent;
+            console.log(screen.textContent);
+        })
+    });
+}
+
+
+
 makeNumberBoard();
+populateScreen();
+
+
+// let screenValue = '';
+
+
+
+// function clear() {
+//     document.querySelector('.clear').addEventListener('click', () => {
+//         console.log('clear has been clicked');
+//         screen.textContent = '';
+//         screenValue = '';
+//     })
+// }
+
+// function addClicked() {
+//     const addBtn = document.querySelector('.addition');
+//     addBtn.addEventListener('click', () => {
+//         let value1 = screenValue;
+//         console.log(`value1 is ${value1}`);
+//         screen.textContent = '';
+//         screenValue = '';
+
+//         let equals = document.querySelector('.equals');
+//         equals.addEventListener('click', () => {
+//             let value2 = screenValue;
+//             console.log(`value2 is ${value2}`);
+//             let result = operate('add', value1, value2);
+//             screen.textContent = result;
+//             screenValue = result;
+//             console.log(`screenValue is ${screenValue}`)
+//         })
+//     })
+// }
+
+// function subtractClicked() {
+//     const subtractBtn = document.querySelector('.subtraction');
+//     subtractBtn.addEventListener('click', () => {
+//         let value1 = screenValue;
+//         screen.textContent = '';
+//         screenValue = '';
+
+//         let equals = document.querySelector('.equals');
+//         equals.addEventListener('click', () => {
+//             let value2 = screenValue;
+//             let result = operate('subtract', value1, value2);
+//             screen.textContent = result;
+//         })
+//     })
+// }
+
+
+// clear();
+// addClicked();
+// subtractClicked();
+// maybe refactor code later
+// function calculate(operator) {
+//     let equals = document.querySelector('.equals');
+//     equals.addEventListener('click', () => {
+//         let result = operate(operator, value1, value2);
+//         screen.textContent = result;
+//     })
+// }

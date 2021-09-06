@@ -1,7 +1,9 @@
 #container{
     display: flex;
+    flex-direction: column;
     width: 960px;
     height: 720px;
+    font-family: 'Quicksand', sans-serif;
 }
 
 
@@ -11,10 +13,38 @@
     flex-direction: row-reverse;
     height: 480px;
     width: 720px;
+    font-size: 64px;
 }
 
 .number{
     border: 1px solid black;
     width: 160px;
     height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block{
+    border: 1px solid black;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.zero{
+    width: 320px;
+}
+
+#numberScreen{
+    width: 647px;
+    margin-left: 73px;
+    height: 160px;
+    border: 0.5px solid black;
+    font-size: 128px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
 }
