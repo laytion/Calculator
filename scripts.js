@@ -45,19 +45,19 @@ function addButton(name, cssClass) {
 
 
 function add(a, b) {
-    return parseInt(a) + parseInt(b);
+    return parseFloat(a) + parseFloat(b);
 }
 
 function subtract(a, b) {
-    return parseInt(a) - parseInt(b);
+    return parseFloat(a) - parseFloat(b);
 }
 
 function multiply(a, b) {
-    return parseInt(a) * parseInt(b);
+    return parseFloat(a) * parseFloat(b);
 }
 
 function divide(a, b) {
-    return parseInt(a) / parseInt(b);
+    return parseFloat(a) / parseFloat(b);
 }
 
 function operate(operator, a, b) {
@@ -75,19 +75,147 @@ function operate(operator, a, b) {
     }
 }
 
-function populateScreen() {
+let a = 0;
+let b = '';
+let operator = 'add';
+
+function numbersClicked() {
     document.querySelectorAll('.number').forEach(number => {
         number.addEventListener('click', () => {
-            screen.textContent += number.textContent;
-            console.log(screen.textContent);
+            b += number.textContent;
+            screen.textContent = b;
         })
     });
+}
+
+function operatorsClicked() {
+    let addition = document.querySelector('.addition');
+    let subtraction = document.querySelector('.subtraction');
+    let multiplication = document.querySelector('.multiplication');
+    let division = document.querySelector('.division');
+    let equals = document.querySelector('.equals');
+
+    addition.addEventListener('click', () => {
+        a = operate(operator, a, parseFloat(b));
+        operator = 'add';
+        b = '';
+        screen.textContent = a;
+    })
+
+    subtraction.addEventListener('click', () => {
+        a = operate(operator, a, parseFloat(b));
+        operator = 'subtract';
+        b = '';
+        screen.textContent = a;
+    })
+
+    multiplication.addEventListener('click', () => {
+        a = operate(operator, a, parseFloat(b));
+        operator = 'multiply';
+        b = '';
+        screen.textContent = a;
+    })
+
+    division.addEventListener('click', () => {
+        a = operate(operator, a, parseFloat(b));
+        operator = 'divide';
+        b = '';
+        screen.textContent = b;
+    })
+
+    equals.addEventListener('click', () => {
+        a = operate(operator, a, parseFloat(b));
+        operator = 'add';
+        screen.textContent = a;
+        b = 0;
+    })
+
+    let clear = document.querySelector('.clear');
+    clear.addEventListener('click', () => {
+        b = '';
+        screen.textContent = b;
+        a = 0;
+        operator = 'add';
+
+    })
+
+    let negativeSign = document.querySelector('.negativeSign');
+    negativeSign.addEventListener('click', () => {
+        if (parseFloat(screen.textContent) == a) {
+            a = -a;
+            screen.textContent = a;
+        }
+        else if (screen.textContent == b) {
+            b = -b;
+            screen.textContent = b;
+        }
+    })
+
+    let percentage = document.querySelector('.percentage');
+    percentage.addEventListener('click', () => {
+        if (parseFloat(screen.textContent) == a) {
+            a = a * 0.01;
+            screen.textContent = a;
+        }
+        else if (screen.textContent == b) {
+            b = parseFloat(b) * 0.01;
+            screen.textContent = b;
+        }
+    })
+
+    let decimal = document.querySelector('.decimal');
+    decimal.addEventListener('click', () => {
+        if (parseFloat(screen.textContent) == a) {
+            a = a.toString() + '.';
+            screen.textContent = a;
+        }
+        else if (screen.textContent == b) {
+            b = b + '.';
+            screen.textContent = b;
+        }
+    })
 }
 
 
 
 makeNumberBoard();
-populateScreen();
+numbersClicked();
+operatorsClicked();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // let screenValue = '';
